@@ -32,7 +32,7 @@
                     <td>{{ row.time }}</td>
                     <td>
                         <p @click="handler(index)">{{ row.inputTitle }}</p>
-                        <Edit v-if="editIndex === index" :task="row" @save="saveEdit" @close="closeEdit"></Edit>
+                        <编辑v-if="editIndex === index" :task="row" @save="saveEdit" @close="closeEdit"></编辑>
                     </td>
                     <td>
                         <input type="radio" v-model="row.priority" value="tall" :name="`row${index}`"/>高
@@ -51,7 +51,7 @@
     </div>
 </template>
 <script setup>
-import Edit from './Edit/index.vue'
+import 编辑 from './Edit/index.vue'
 import { ref, onMounted, watch, computed, nextTick } from 'vue';
 // 定义表格数据
 const tableData = ref([]);
@@ -126,7 +126,11 @@ const sortByTime = () => {
 };
 // 默认排序
 const restoreDefaultSort = () => {
-    tableData.value = [...defaultTableData.value];
+    if(defaultTableData.value.length == 0){
+        return tableData.value
+    }else{
+        tableData.value = [...defaultTableData.value];
+    }
 };
 // 清除已完成的任务
 const clearCompletedRows = () => {
