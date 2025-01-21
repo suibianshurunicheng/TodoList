@@ -32,7 +32,7 @@
                     <td>{{ row.time }}</td>
                     <td>
                         <p @click="handler(index)">{{ row.inputTitle }}</p>
-                        <编辑v-if="editIndex === index" :task="row" @save="saveEdit" @close="closeEdit"></编辑>
+                        <Edit v-if="editIndex === index" :task="row" @save="saveEdit" @close="closeEdit"></Edit>
                     </td>
                     <td>
                         <input type="radio" v-model="row.priority" value="tall" :name="`row${index}`"/>高
@@ -51,7 +51,7 @@
     </div>
 </template>
 <script setup>
-import 编辑 from './Edit/index.vue'
+import Edit from './Edit/index.vue'
 import { ref, onMounted, watch, computed, nextTick } from 'vue';
 // 定义表格数据
 const tableData = ref([]);
